@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block content %}
+       
+      {% if session_username is defined %}
+
+		<h1>Hi, {{ session_username }} !</h1>
+		
+		{% else %}
+
+		<h1>Hi, guest!</h1>
+
+	{% endif %}
+
+
+	{% for p in posts %}
+
+
+		<p>{{ p.get_username() }}: {{ p.content }}</p>
+
+
+	{% endfor %}
+
+	{% if session_username is defined %}
+
+	<form action="/logout" method="POST">
+	<button type="submit"> Log out </button>
+	</form>
+
+	<form action="/newpost" method="GET">
+		<button type="submit"> New Post </button>
+	</form>
+
+	{% else %}
+	<form action="/login" method="GET">
+	<button type="submit"> Log in </button>
+	</form>
+	<form action="/signup" method="GET">
+	<button type="submit"> Sign up </button>
+	</form>
+	{% endif %}
+
+
+{% endblock %}

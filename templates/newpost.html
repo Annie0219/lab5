@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+
+         
+<h1>New Post</h1>
+    <form method="POST" action="/newpost" novalidate>
+        {{ form.hidden_tag() }}
+
+        <div class="form-group">
+		{{ form.content.label }}<br>
+		{{ form.content(rows='12',cols='60') }}<br>
+		{% for error in form.content.errors %}
+		<span style="color: red;">[{{ error }}]</span>
+		{% endfor %}
+		</div>
+
+		<div class="form-group">
+		{{ form.submit }}
+		</div>
+         
+    </form>
+
+{% endblock %}
